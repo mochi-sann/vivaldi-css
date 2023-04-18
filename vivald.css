@@ -2,3 +2,102 @@ div.mainbar > div > div.UrlBar-AddressField {
   height: 32px !important;
   /* font-size:105% !important; */
 }
+
+.addressfield .pageload {
+  display: flex;
+  pointer-events: none;
+  order: 1;
+  opacity: 0;
+  color: var(--colorFg);
+}
+.addressfield .pageload:not(.unstarted).progressing,
+.addressfield .pageload:not(.unstarted).progress-done {
+  opacity: 1;
+}
+.addressfield
+  .pageload:not(.unstarted).progressing
+  .pageload-indicator::-webkit-progress-value,
+.addressfield
+  .pageload:not(.unstarted).progress-done
+  .pageload-indicator::-webkit-progress-value {
+  transition: width 0.4s;
+}
+.addressfield
+  .pageload:not(.unstarted).progressing
+  > .pageload-indicator[value="0"]::-webkit-progress-value,
+.addressfield
+  .pageload:not(.unstarted).progress-done
+  .pageload-indicator[value="0"]::-webkit-progress-value {
+  transition: none;
+}
+.addressfield .pageload:not(.unstarted).stopped {
+  transition: opacity 1s;
+  opacity: 0;
+}
+.addressfield .pageload.progressing .pageload-ticker {
+  width: 50px;
+  opacity: 1;
+  padding-right: var(--padding);
+  margin-right: var(--padding);
+}
+.private .addressfield .pageload.progressing .pageload-ticker {
+  color: var(--colorBgIntense);
+}
+.addressfield .pageload.progress-done .pageload-ticker {
+  transition: opacity 0.15s, width 0s, margin 0s, padding 0s;
+  transition-delay: 1.5s, 1.8s, 1.8s, 1.8s;
+}
+.addressfield .pageload.progress-done .pageload-ticker + .pageload-ticker {
+  transition-delay: 1.7s, 2s, 2s, 2s;
+}
+.addressfield .pageload .pageload-indicator {
+  position: absolute;
+  width: auto;
+  height: 32px !important;
+  left: 1px;
+  right: 1px;
+  top: 1px;
+  border-radius: var(--radius);
+  -webkit-appearance: none;
+  opacity: 0.25;
+  background-color: var(--colorAccentBg);
+  overflow: hidden;
+}
+.theme-dark .addressfield .pageload .pageload-indicator,
+.private .addressfield .pageload .pageload-indicator {
+  opacity: 0.5;
+}
+.addressfield .pageload .pageload-indicator::-webkit-progress-inner-element {
+  width: 100%;
+}
+.addressfield .pageload .pageload-indicator::-webkit-progress-bar {
+  background: transparent;
+}
+.addressfield .pageload .pageload-indicator::-webkit-progress-value {
+  border-radius: var(--radius);
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: var(--colorBgIntenser);
+}
+.private .addressfield .pageload .pageload-indicator::-webkit-progress-value {
+  background-color: var(--colorFg);
+}
+.addressfield .pageload .pageload-ticker {
+  pointer-events: none;
+  font-size: var(--fontSizeSmaller);
+  margin: auto 0;
+  line-height: 16px;
+  width: 0;
+  height: 16px;
+  font-weight: calc(var(--fontWeight) + 300);
+  position: relative;
+  opacity: 0;
+  overflow: hidden;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: 1px 1px, 0 0;
+  background-size: 50px 14px, 100% 100%;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  padding-right: 0;
+  margin-right: 0;
+}
